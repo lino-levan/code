@@ -30,13 +30,13 @@ export default new Tool({
       }
     }
 
-    await ensureFile(resolved);
-
     console.log("\n");
     const answer = prompt("Does that look good [y/N]?") ?? "";
     if (answer.toLowerCase() !== "y") {
       return "User declined the change.";
     }
+
+    await ensureFile(resolved);
     await Deno.writeTextFile(resolved, content);
 
     return `✅ written ${resolved}`;
